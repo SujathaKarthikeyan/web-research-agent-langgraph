@@ -3,9 +3,10 @@ from langgraph.types import Send
 from src.chains import query_analysis_chain, summarizer_chain
 from src.state import State
 from src.utils import scrape_with_robots_check, search_google_custom
+from typing import Dict, Any, List
 
 
-async def query_analysis_node(state: State):
+async def query_analysis_node(state: State) -> Dict[str, Any]:
     query_analysis_result = await query_analysis_chain.ainvoke(
         {"user_query": state.user_query}
     )
@@ -13,12 +14,12 @@ async def query_analysis_node(state: State):
     return {"query_analysis": query_analysis_result}
 
 
-def split_into_searches(state: State):
+def split_into_searches(state: State) -> List[Send]:
     queries = state.query_analysis.search_queries
     return [Send("search_and_scrape", {"search_query": q}) for q in queries]
 
 
-def search_and_scrape(state: dict):
+def search_and_scrape(state: Dict[str, Any]) -> Dict[str, List[Any]]:
     search_query = state["search_query"]
     try:
         results = search_google_custom(
@@ -45,7 +46,7 @@ def search_and_scrape(state: dict):
         return {"scraped_contents": [], "sources": []}
 
 
-async def summarizer_node(state: State):
+async def summarizer_node(state: State) -> Dict[str, Any]:
     # Format the articles nicely
     articles_text = "\n\n".join(
         [

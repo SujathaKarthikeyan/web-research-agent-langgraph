@@ -1,11 +1,14 @@
 import os
 import urllib.robotparser
+from typing import Dict, List, Optional
 
 import requests
 from bs4 import BeautifulSoup
 
 
-def search_google_custom(topics: list[str], filters: dict = None, num_results: int = 5):
+def search_google_custom(
+    topics: List[str], filters: Optional[Dict[str, str]] = None, num_results: int = 5
+) -> List[Dict[str, str]]:
     search_results = []
 
     for topic in topics:

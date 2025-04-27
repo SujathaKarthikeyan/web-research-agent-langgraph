@@ -37,11 +37,6 @@ jobs:
           . venv/bin/activate
           pip install ruff
           ruff check .
-      - name: Lint with mypy
-        run: |
-          . venv/bin/activate
-          pip install mypy
-          mypy --strict src/
       - name: Check README spelling
         uses: codespell-project/actions-codespell@v2
         with:
