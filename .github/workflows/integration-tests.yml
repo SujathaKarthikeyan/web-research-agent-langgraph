@@ -35,7 +35,7 @@ jobs:
       - name: Run integration tests
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          GCSE_API_KEY:  ${{ secrets.OPENAI_API_KEY }}
+          GCSE_API_KEY:  ${{ secrets.GCSE_API_KEY }}
           SEARCH_ENGINE_ID: ${{ secrets.SEARCH_ENGINE_ID }}
           LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
           LANGSMITH_TRACING: true
