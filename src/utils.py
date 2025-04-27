@@ -1,5 +1,8 @@
-import requests
 import os
+import urllib.robotparser
+
+import requests
+from bs4 import BeautifulSoup
 
 
 def search_google_custom(topics: list[str], filters: dict = None, num_results: int = 5):
@@ -41,11 +44,6 @@ def search_google_custom(topics: list[str], filters: dict = None, num_results: i
             )
 
     return search_results
-
-
-import urllib.robotparser
-import requests
-from bs4 import BeautifulSoup
 
 
 def scrape_with_robots_check(url: str, user_agent: str = "MyScraperBot"):
